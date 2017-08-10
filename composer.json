@@ -1,0 +1,19 @@
+{
+    "name": "donkeycode/rest-bundle",
+    "description": "Rest tools",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cedric LOMBARDOT",
+            "email": "cedric.lombardot@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "DonkeyCode\\RestBundle\\": ""
+        }
+    }
+}
