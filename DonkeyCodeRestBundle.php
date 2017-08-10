@@ -5,6 +5,7 @@ namespace DonkeyCode\RestBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use DonkeyCode\RestBundle\DependencyInjection\Compiler\AddPropelTagPass;
 use DonkeyCode\RestBundle\DependencyInjection\Security\Factory\VarnishFactory;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class DonkeyCodeRestBundle extends Bundle
 {
