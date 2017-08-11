@@ -53,10 +53,7 @@ class AddPropelTagPass implements CompilerPassInterface
             $path = preg_replace('/(.+)\.php/', '$1', $path);
             $path = str_replace('/', '\\', $path);
 
-            $implements = class_implements($path);
-            if (array_key_exists(ContainerAwareInterface::class, $implements)) {
-                $classes[] = $path;
-            }
+            $classes[] = $path;
         }
 
         return $classes;
