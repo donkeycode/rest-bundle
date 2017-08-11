@@ -6,7 +6,7 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class ContainerAwareListener
+class ContainerAwareListener implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 
