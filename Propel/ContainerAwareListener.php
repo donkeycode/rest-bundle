@@ -12,6 +12,8 @@ class ContainerAwareListener implements ContainerAwareInterface
 
     public function onPropelConstruct(GenericEvent $event)
     {
-        $event->getSubject()->setContainer($this->container);
+        if ($event->getSubject() instanceof ContainerAwareInterface) {
+            $event->getSubject()->setContainer($this->container);
+        }
     }
 }
