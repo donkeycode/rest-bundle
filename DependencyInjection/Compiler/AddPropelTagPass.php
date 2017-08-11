@@ -7,6 +7,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 
 /**
  * Add tagged provider to the hash generator for user context.
@@ -49,11 +50,13 @@ class AddPropelTagPass implements CompilerPassInterface
 
         foreach ($files as $file) {
             list ($fold, $path) = explode('src/', $file->getPathname());
-
             $path = preg_replace('/(.+)\.php/', '$1', $path);
             $path = str_replace('/', '\\', $path);
 
-            $classes[] = $path;
+            $implements = class_implements($path);
+            if (array_key_exists(ContainerAwareInterface::class, $implements)) {
+                $classes[] = $path;
+            }
         }
 
         return $classes;
