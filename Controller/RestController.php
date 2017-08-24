@@ -45,7 +45,7 @@ class RestController extends FOSRestController
             $object->save();
             $this->get('event_dispatcher')->dispatch('rest_post', new ModelEvent($object));
 
-            return $object;
+            return $this->view($object, Response::HTTP_CREATED);
         }
 
         return $this->view(['form' => $form], Response::HTTP_BAD_REQUEST);
