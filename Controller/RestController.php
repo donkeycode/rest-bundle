@@ -152,16 +152,9 @@ class RestController extends FOSRestController
         $rangeEnd   = ($count > 0) ? ($rangeStart + $count - 1) : $count;
 
         $this->get('event_dispatcher')->dispatch('rest_cget', new ModelCollectionEvent($query->getModelName(), $page));
-        if ($request->get('env') == 'admin') {
-            $view = $this->view([
-                "aggregations" => $aggregates,
-                "hits" => [
-                    "total" => $total,
-                    "hits" => iterator_to_array($results)
-                ]], Response::HTTP_PARTIAL_CONTENT);
-        } else {
-            $view = $this->view(iterator_to_array($results), Response::HTTP_PARTIAL_CONTENT);
-        }
+       
+        $view = $this->view(iterator_to_array($results), Response::HTTP_PARTIAL_CONTENT);
+        
         $view->setHeader('Accept-Ranges', 'objects');
         $view->setHeader('Content-Range', 'objects '.$rangeStart.'-'.$rangeEnd.'/'.$total);
 
