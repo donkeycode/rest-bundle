@@ -24,6 +24,10 @@ class AddPropelTagPass implements CompilerPassInterface
         if (!$container->has(self::TAGGED_SERVICE)) {
             return;
         }
+        
+        if (!$container->has('propel.logger')) {
+            return;
+        }
 
         $definition = $container->getDefinition(self::TAGGED_SERVICE);
 
