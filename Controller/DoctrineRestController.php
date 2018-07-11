@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\RestController\Controller;
+namespace DonkeyCode\RestBundle\Controller;
 
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
