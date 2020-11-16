@@ -153,6 +153,24 @@ class RestController extends FOSRestController
 
         $this->get('event_dispatcher')->dispatch('rest_cget', new ModelCollectionEvent($query->getModelName(), $page));
        
+        if ($request->get('with_meta')) {
+            $view = $this->view([
+                'meta' => [
+                    'content_range' => $rangeStart.'-'.$rangeEnd.'/'.$total,
+                    'total' => $total,
+                    'range_start' => $rangeStart,
+                    'range_end' => $rangeEnd,
+                    'current_page' => $page,
+                ],
+                'results' => iterator_to_array($results),
+            ], Response::HTTP_OK);
+        
+            $view->setHeader('Accept-Ranges', 'objects');
+            $view->setHeader('Content-Range', 'objects '.$rangeStart.'-'.$rangeEnd.'/'.$total);    
+
+            return $view;
+        }
+
         $view = $this->view(iterator_to_array($results), Response::HTTP_OK);
         
         $view->setHeader('Accept-Ranges', 'objects');
